@@ -9,7 +9,7 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.compose12"
+        applicationId = "com.example.compose10"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
@@ -30,27 +30,22 @@ android {
             )
         }
     }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-
     kotlinOptions {
         jvmTarget = "1.8"
     }
-
     buildFeatures {
-        compose = true  // Включаем поддержку Compose
+        compose = true
     }
-
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"  // Версия компилятора для Jetpack Compose
+        kotlinCompilerExtensionVersion = "1.5.1"
     }
-
     packaging {
         resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"  // Исключаем лишние файлы из пакета
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
 }
@@ -61,33 +56,30 @@ dependencies {
 
     // Подключаем Gson для работы с JSON (если нужно)
     implementation("com.google.code.gson:gson:2.8.9")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0")
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.6.0")
+    implementation ("androidx.activity:activity-compose:1.7.0")
 
-    // Зависимости для работы с ViewModel и жизненным циклом в Compose
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.0")
-    implementation("androidx.activity:activity-compose:1.7.0")
-
-    // Зависимости для работы с Android и Jetpack Compose
+    // Зависимости для Android и Jetpack Compose
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
-    //noinspection BomWithoutPlatform
-    implementation(platform(libs.androidx.compose.bom))  // Управление зависимостями Compose
-    implementation(libs.androidx.ui)  // Compose UI
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)  // Material3 для Compose
-    implementation(libs.androidx.navigation.compose)  // Навигация Compose
-    implementation(libs.androidx.navigation.runtime.ktx)  // Навигация KTX
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.navigation.runtime.ktx)
 
     // Тестовые зависимости
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))  // Тесты для Compose
+    androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
 
     // Для отладки
-    debugImplementation(libs.androidx.ui.tooling)  // Утилиты для отладки Compose
+    debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }
